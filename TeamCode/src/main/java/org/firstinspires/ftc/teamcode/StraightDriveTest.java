@@ -29,21 +29,17 @@
 
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+import static java.lang.Thread.sleep;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import java.lang.Math;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.hardware.Gamepad;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
-/* Demonstrates empty OpMode
- */
-@TeleOp(name = "Concept: Granger gurus", group = "Concept")
+@TeleOp(name = "Safe Drive Test", group = "Tests")
 //@Disabled
-public class ConceptNullOp extends OpMode {
+public class StraightDriveTest extends OpMode {
     DcMotor right_front;
     DcMotor left_front;
     DcMotor right_back;
@@ -55,7 +51,7 @@ public class ConceptNullOp extends OpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
 
-    public ConceptNullOp() {
+    public StraightDriveTest() {
 
     }
 
@@ -88,6 +84,20 @@ public class ConceptNullOp extends OpMode {
     @Override
     public void start() {
         runtime.reset();
+
+        left_front.setPower(-1);
+        right_front.setPower(-1);
+        right_back.setPower(-1);
+        left_back.setPower(-1);
+        try {
+            sleep(2800);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        left_front.setPower(0);
+        right_front.setPower(0);
+        right_back.setPower(0);
+        left_back.setPower(0);
     }
 
     /*
@@ -96,6 +106,7 @@ public class ConceptNullOp extends OpMode {
      */
     @Override
     public void loop() {
+        /*
         double angle = Math.atan2(gamepad1.left_stick_y,-1*gamepad1.left_stick_x);
         double drive_magnitude = Math.sqrt(Math.pow(gamepad1.left_stick_x, 2) + Math.pow(gamepad1.left_stick_y, 2));
         double drive_power1 = drive_magnitude * Math.sin(angle-(1.0/4.0 * Math.PI));
@@ -142,8 +153,13 @@ public class ConceptNullOp extends OpMode {
         }
 
         telemetry.addData("Alliance", this.alliance==BLUE_ALLIANCE ? "Blue":"Red");
+
+         */
     }
 }
+
+
+/*
 // autonomous program that drives bot forward a set distance, stops then
 // backs up to the starting point using encoders to measure the distance.
 
@@ -265,3 +281,5 @@ public class DriveWithEncoder extends LinearOpMode
         }
     }
 }
+
+ */
